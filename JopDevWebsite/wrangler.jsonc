@@ -1,0 +1,8 @@
+{
+  "name": "jopdev-website",
+  "compatibility_date": "2026-08-31",
+
+  "assets": {
+    "directory": "./dist"
+  }
+}
