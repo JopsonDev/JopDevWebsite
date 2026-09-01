@@ -145,6 +145,198 @@ body {
   color: #64748b;
 }
 
+/* Reusable layout for privacy, terms, and support pages */
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px 100px
+}
+
+.legal-page h1 {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.legal-page h2 {
+  margin-top: 36px;
+  font-size: 24px;
+}
+
+.legal-page p {
+  line-height: 1.7;
+  color: #475569;
+}
+
+.legal-page a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.legal-page a:hover {
+  text-decoration: underline;
+}
+
+/* Main RakingPix hero section */
+.product-hero {
+  min-height: 70vh; /* gives the opening section lots of vertical space */
+  display: flex;
+  flex-direction: column; /* stack everything vertically */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Small label above the product name */
+.product-label {
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase; /* makes text ALL CAPS */
+  letter-spacing: 1px; /* adds space between letters */
+}
+
+/* Main RakingPix title */
+.product-hero h1 {
+  margin: 0;
+  font-size: 64px;
+}
+
+/* Main tagline */
+.product-tagline {
+  margin: 18px 0 0;
+  max-width: 700px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Supporting product description */
+.product-description {
+  max-width: 650px;
+  margin: 18px 0 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+
+/* Reusable blue button-style link */
+.primary-button {
+  display: inline-block; /* lets the link behave more like a button */
+  padding: 12px 22px;
+  background: #2563eb;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Button hover effect */
+.primary-button:hover {
+  background: #1d4ed8;
+}
+
+
+/* General product content section */
+.product-section {
+  padding: 80px 8%;
+}
+
+/* Section headings */
+.product-section h2 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 36px;
+}
+
+/* Text below a section heading */
+.section-intro {
+  max-width: 650px;
+  margin: 0 auto 40px;
+  text-align: center;
+  color: #64748b;
+}
+
+
+/* Holds the feature cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* creates 3 equal columns */
+  gap: 24px;
+  max-width: 1100px;
+  margin: 40px auto 0;
+}
+
+/* Individual feature box */
+.feature-card {
+  padding: 28px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* Feature title */
+.feature-card h3 {
+  margin-top: 0;
+}
+
+/* Feature description */
+.feature-card p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+
+/* Pro pricing box */
+.pricing-card {
+  max-width: 500px;
+  margin: 40px auto 0;
+  padding: 36px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Pro name */
+.pricing-card h3 {
+  margin-top: 0;
+  font-size: 26px;
+}
+
+/* Big price */
+.price {
+  margin: 12px 0;
+  font-size: 44px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* Space between Pro feature list items */
+.pricing-card li {
+  margin-bottom: 10px;
+}
+
+
+/* Bottom links for privacy, terms, support */
+.product-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 20px 70px;
+}
+
+/* Bottom link styling */
+.product-links a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+/* Underline when hovering */
+.product-links a:hover {
+  text-decoration: underline;
+}
+
 
 /* ==========================================================================
    Helper classes

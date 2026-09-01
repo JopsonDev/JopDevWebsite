@@ -9,6 +9,27 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
+
+    new HtmlWebpackPlugin({
+      template: './rakingpix/index.html',
+      filename: 'rakingpix/index.html'
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './rakingpix/privacy.html',
+      filename: 'rakingpix/privacy/index.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './rakingpix/support.html',
+      filename: 'rakingpix/support/index.html',
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './rakingpix/terms.html',
+      filename: 'rakingpix/terms/index.html'
+    }),
+
     new CopyPlugin({
       patterns: [
         { from: 'img', to: 'img' },
