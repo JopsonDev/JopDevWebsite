@@ -337,6 +337,41 @@ body {
   text-decoration: underline;
 }
 
+/* Changes that apply when the screen is 768px wide or smaller */
+@media (max-width: 768px) {
+
+  /* Stack the navigation a little tighter */
+  .site-header {
+    padding: 16px 20px;
+  }
+
+  /* Make navigation spacing smaller */
+  .nav-links {
+    gap: 14px;
+  }
+
+  /* Shrink the huge RakingPix title */
+  .product-hero h1 {
+    font-size: 46px;
+  }
+
+  /* Shrink the tagline */
+  .product-tagline {
+    font-size: 22px;
+  }
+
+  /* Change our 3-column grid into 1 column */
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Stack the bottom links vertically */
+  .product-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 
 /* ==========================================================================
    Helper classes
