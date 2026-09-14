@@ -287,37 +287,6 @@ body {
 }
 
 
-/* Pro pricing box */
-.pricing-card {
-  max-width: 500px;
-  margin: 40px auto 0;
-  padding: 36px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-}
-
-/* Pro name */
-.pricing-card h3 {
-  margin-top: 0;
-  font-size: 26px;
-}
-
-/* Big price */
-.price {
-  margin: 12px 0;
-  font-size: 44px;
-  font-weight: 700;
-  color: #2563eb;
-}
-
-/* Space between Pro feature list items */
-.pricing-card li {
-  margin-bottom: 10px;
-}
-
-
 /* Bottom links for privacy, terms, support */
 .product-links {
   display: flex;
@@ -533,4 +502,3 @@ body {
     page-break-after: avoid;
   }
 }
-
