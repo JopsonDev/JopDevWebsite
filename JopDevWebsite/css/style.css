@@ -145,6 +145,64 @@ body {
   color: #64748b;
 }
 
+/* Featured project on the JopDev homepage */
+.project-showcase {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 8% 100px;
+}
+
+.project-showcase h2 {
+  margin: 0 0 24px;
+  font-size: 36px;
+}
+
+.project-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 36px;
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+}
+
+.project-card h3 {
+  margin: 10px 0;
+  font-size: 30px;
+}
+
+.project-card h3 a {
+  color: #172033;
+  text-decoration: none;
+}
+
+.project-card h3 a:hover {
+  color: #2563eb;
+}
+
+.project-card p:not(.availability-badge) {
+  max-width: 680px;
+  margin: 0;
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.availability-badge {
+  display: inline-block;
+  margin: 0;
+  padding: 5px 10px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
 /* Reusable layout for privacy, terms, and support pages */
 .legal-page {
   max-width: 800px;
@@ -234,6 +292,25 @@ body {
 /* Button hover effect */
 .primary-button:hover {
   background: #1d4ed8;
+}
+
+.primary-button:focus-visible,
+.nav-links a:focus-visible,
+.project-card h3 a:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.primary-button-large {
+  padding: 15px 28px;
+  font-size: 18px;
+}
+
+.support-install-link {
+  padding: 18px 20px;
+  background: #eff6ff;
+  border-left: 4px solid #2563eb;
+  border-radius: 6px;
 }
 
 
@@ -332,6 +409,17 @@ body {
   /* Change our 3-column grid into 1 column */
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .project-card {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px;
   }
 
   /* Stack the bottom links vertically */
