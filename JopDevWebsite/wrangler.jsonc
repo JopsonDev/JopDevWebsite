@@ -15,12 +15,14 @@
     {
       "binding": "REVIEWS_DB",
       "database_name": "jopdev-reviews",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "6e922695-cd28-45cf-a7f4-f1bd62c28270",
       "migrations_dir": "migrations"
     }
   ],
 
-  "secrets": {
-    "required": ["ADMIN_TOKEN", "IP_HASH_SALT"]
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 }
   }
 }

@@ -56,10 +56,23 @@ async function sha256(value) {
 }
 
 export async function constantTimeEqual(left, right) {
-  const [leftHash, rightHash] = await Promise.all([sha256(String(left)), sha256(String(right))]);
+  const encoder = new TextEncoder();
+  const [leftHash, rightHash] = await Promise.all([
+    crypto.subtle.digest('SHA-256', encoder.encode(String(left))),
+    crypto.subtle.digest('SHA-256', encoder.encode(String(right))),
+  ]);
+  if (typeof crypto.subtle.timingSafeEqual === 'function') {
+    return crypto.subtle.timingSafeEqual(leftHash, rightHash);
+  }
+
+  // Node's Web Crypto does not expose the Workers timingSafeEqual extension.
+  // Both SHA-256 digests are fixed length, so this non-short-circuit fallback
+  // preserves the same comparison shape in the Node-based unit tests.
+  const leftBytes = new Uint8Array(leftHash);
+  const rightBytes = new Uint8Array(rightHash);
   let difference = 0;
-  for (let index = 0; index < leftHash.length; index += 1) {
-    difference |= leftHash.charCodeAt(index) ^ rightHash.charCodeAt(index);
+  for (let index = 0; index < leftBytes.length; index += 1) {
+    difference |= leftBytes[index] ^ rightBytes[index];
   }
   return difference === 0;
 }
@@ -254,7 +267,13 @@ export default {
     try {
       return await handleRequest(request, env);
     } catch (error) {
-      if (!error.status || error.status >= 500) console.error('Review Worker error:', error);
+      if (!error.status || error.status >= 500) {
+        console.error(JSON.stringify({
+          message: 'Review Worker error',
+          error: error instanceof Error ? error.message : String(error),
+          path: new URL(request.url).pathname,
+        }));
+      }
       return json({ error: error.message || 'Unexpected server error.' }, error.status || 500);
     }
   },
