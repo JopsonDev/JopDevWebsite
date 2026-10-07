@@ -394,9 +394,9 @@ body {
 
 /* Reviews */
 .reviews-page {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 72px 8% 100px;
+  padding: 72px 6% 100px;
 }
 
 .reviews-intro {
@@ -661,6 +661,12 @@ body {
   display: block;
   margin-bottom: 7px;
   font-weight: 600;
+}
+
+.optional-label {
+  color: #64748b;
+  font-size: 0.9em;
+  font-weight: 400;
 }
 
 .form-field input[type="text"],
@@ -942,6 +948,11 @@ body {
 .danger-button {
   color: #b91c1c;
   border-color: #fecaca;
+}
+
+.danger-button:hover {
+  color: #991b1b;
+  background: #fef2f2;
 }
 
 /* Changes that apply when the screen is 768px wide or smaller */

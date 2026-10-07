@@ -111,8 +111,8 @@
 
     <form class="review-form" data-review-form novalidate>
       <p class="form-intro">
-        All fields are required. Your email is used only for review administration
-        and is never displayed publicly.
+        Name, rating, and review are required. Email is optional, used only for
+        review administration, and never displayed publicly.
       </p>
 
       <div class="form-field">
@@ -130,17 +130,16 @@
       </div>
 
       <div class="form-field">
-        <label for="review-email">Email</label>
+        <label for="review-email">Email <span class="optional-label">(optional)</span></label>
         <input
           id="review-email"
           name="email"
           type="email"
           autocomplete="email"
           maxlength="254"
-          required
           aria-describedby="review-email-hint review-email-error"
         >
-        <p class="field-hint" id="review-email-hint">Never shown with your review.</p>
+        <p class="field-hint" id="review-email-hint">Optional and never shown with your review.</p>
         <p class="field-error" id="review-email-error" data-error-for="email"></p>
       </div>
 

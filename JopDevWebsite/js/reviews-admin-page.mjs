@@ -12,7 +12,7 @@ function createDetail(label, value) {
   return wrapper;
 }
 
-function createAdminReviewCard(review, onModerate) {
+function createAdminReviewCard(review, { onModerate, onDelete }) {
   const article = document.createElement('article');
   article.className = 'admin-review-card';
 
@@ -30,7 +30,7 @@ function createAdminReviewCard(review, onModerate) {
   const details = document.createElement('dl');
   details.className = 'admin-review-details';
   details.append(
-    createDetail('Email (private)', review.email),
+    createDetail('Email (private)', review.email || 'Not provided'),
     createDetail('Rating', `${review.rating} out of 5 stars`),
     createDetail('Status', review.status),
   );
@@ -42,9 +42,15 @@ function createAdminReviewCard(review, onModerate) {
 
   article.append(heading, details, reviewText);
 
+  const actions = document.createElement('div');
+  actions.className = 'admin-review-actions';
+  const deleteButton = document.createElement('button');
+  deleteButton.className = 'secondary-button danger-button';
+  deleteButton.type = 'button';
+  deleteButton.textContent = 'Delete';
+
+  const actionButtons = [deleteButton];
   if (review.status === 'pending') {
-    const actions = document.createElement('div');
-    actions.className = 'admin-review-actions';
     const reject = document.createElement('button');
     reject.className = 'secondary-button danger-button';
     reject.type = 'button';
@@ -54,11 +60,14 @@ function createAdminReviewCard(review, onModerate) {
     approve.type = 'button';
     approve.textContent = 'Approve';
 
-    reject.addEventListener('click', () => onModerate(review.id, 'rejected', [reject, approve]));
-    approve.addEventListener('click', () => onModerate(review.id, 'approved', [reject, approve]));
-    actions.append(reject, approve);
-    article.append(actions);
+    actionButtons.push(reject, approve);
+    reject.addEventListener('click', () => onModerate(review.id, 'rejected', actionButtons));
+    approve.addEventListener('click', () => onModerate(review.id, 'approved', actionButtons));
   }
+
+  deleteButton.addEventListener('click', () => onDelete(review, actionButtons));
+  actions.append(...actionButtons);
+  article.append(actions);
 
   return article;
 }
@@ -114,7 +123,10 @@ export function initReviewsAdminPage() {
 
       const payload = await response.json();
       const reviews = Array.isArray(payload.reviews) ? payload.reviews : [];
-      list.replaceChildren(...reviews.map((review) => createAdminReviewCard(review, moderateReview)));
+      list.replaceChildren(...reviews.map((review) => createAdminReviewCard(review, {
+        onModerate: moderateReview,
+        onDelete: deleteReview,
+      })));
       loading.hidden = true;
       if (reviews.length) list.hidden = false;
       else empty.hidden = false;
@@ -146,6 +158,36 @@ export function initReviewsAdminPage() {
       await loadReviews();
     } catch (moderationError) {
       error.textContent = moderationError.message || 'The review could not be updated.';
+      error.hidden = false;
+      buttons.forEach((button) => {
+        button.disabled = false;
+      });
+    }
+  }
+
+  async function deleteReview(review, buttons) {
+    const confirmed = window.confirm(
+      `Permanently delete ${review.displayName}'s review? This cannot be undone.`,
+    );
+    if (!confirmed) return;
+
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+    error.hidden = true;
+
+    try {
+      const response = await adminFetch(`/admin/reviews/${encodeURIComponent(review.id)}`, {
+        method: 'DELETE',
+      });
+      if (response.status === 401) {
+        showLogin('Your moderation session is no longer authorized.');
+        return;
+      }
+      if (!response.ok) throw new Error('The review could not be deleted.');
+      await loadReviews();
+    } catch (deleteError) {
+      error.textContent = deleteError.message || 'The review could not be deleted.';
       error.hidden = false;
       buttons.forEach((button) => {
         button.disabled = false;

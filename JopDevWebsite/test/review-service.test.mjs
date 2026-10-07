@@ -24,6 +24,14 @@ test('validateReview trims values and accepts a complete review', () => {
   assert.equal(result.values.rating, 5);
 });
 
+test('validateReview accepts a blank optional email', () => {
+  const result = validateReview({ ...validReview, email: '   ' });
+
+  assert.equal(result.isValid, true);
+  assert.equal(result.values.email, '');
+  assert.equal(result.errors.email, undefined);
+});
+
 test('validateReview returns clear errors for every required field', () => {
   const result = validateReview({ name: '', email: 'not-an-email', rating: 0, reviewText: 'short' });
 

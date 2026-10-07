@@ -45,8 +45,7 @@ export function validateReview(input) {
   if (!values.name) errors.name = 'Enter your name.';
   else if (values.name.length > 80) errors.name = 'Name must be 80 characters or fewer.';
 
-  if (!values.email) errors.email = 'Enter your email address.';
-  else if (values.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+  if (values.email && (values.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email))) {
     errors.email = 'Enter a valid email address.';
   }
 

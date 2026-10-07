@@ -11,7 +11,7 @@ request continues to use the compiled files in `dist/`.
 3. The Worker applies server-side rate limits and inserts a `pending` D1 row.
 4. The private moderator page at `/reviews/admin/` requests pending records with
    a bearer token.
-5. Approving a review changes its status to `approved`.
+5. Moderators can approve, reject, or permanently delete a review.
 6. `GET /api/reviews` selects only approved public fields. Its SQL does not
    select email, idempotency, or rate-limit data.
 
@@ -101,14 +101,16 @@ Mock submissions live only in memory and are never written to D1.
 ### Public
 
 - `GET /api/reviews` returns the newest 100 approved reviews. Email is omitted.
-- `POST /api/reviews` accepts `name`, `email`, `rating`, and `reviewText` plus an
-  `Idempotency-Key` header. A valid review returns HTTP 202 and remains pending.
+- `POST /api/reviews` accepts required `name`, `rating`, and `reviewText` values,
+  plus optional `email` and an `Idempotency-Key` header. A valid review returns
+  HTTP 202 and remains pending.
 
 ### Private moderation
 
 - `GET /api/admin/reviews?status=pending`
 - `PATCH /api/admin/reviews/:id` with `{ "status": "approved" }` or
   `{ "status": "rejected" }`
+- `DELETE /api/admin/reviews/:id` permanently deletes one review
 
 Both moderation endpoints require `Authorization: Bearer <ADMIN_TOKEN>`.
 

@@ -33,8 +33,7 @@ export function validateReviewPayload(input) {
   if (!values.name) errors.name = 'Enter your name.';
   else if (values.name.length > 80) errors.name = 'Name must be 80 characters or fewer.';
 
-  if (!values.email) errors.email = 'Enter your email address.';
-  else if (values.email.length > 254 || !EMAIL_PATTERN.test(values.email)) {
+  if (values.email && (values.email.length > 254 || !EMAIL_PATTERN.test(values.email))) {
     errors.email = 'Enter a valid email address.';
   }
 
@@ -238,6 +237,17 @@ async function moderateReview(request, env, reviewId) {
   return json({ id: reviewId, status });
 }
 
+async function deleteReview(request, env, reviewId) {
+  if (!(await isAuthorized(request, env))) return json({ error: 'Unauthorized.' }, 401);
+
+  const result = await env.REVIEWS_DB.prepare(
+    'DELETE FROM reviews WHERE id = ?',
+  ).bind(reviewId).run();
+
+  if (!result.meta?.changes) return json({ error: 'Review not found.' }, 404);
+  return json({ id: reviewId, deleted: true });
+}
+
 export async function handleRequest(request, env) {
   const url = new URL(request.url);
 
@@ -254,6 +264,9 @@ export async function handleRequest(request, env) {
   const moderationMatch = url.pathname.match(/^\/api\/admin\/reviews\/([a-zA-Z0-9-]+)$/);
   if (moderationMatch && request.method === 'PATCH') {
     return moderateReview(request, env, moderationMatch[1]);
+  }
+  if (moderationMatch && request.method === 'DELETE') {
+    return deleteReview(request, env, moderationMatch[1]);
   }
 
   if (url.pathname.startsWith('/api/')) {
