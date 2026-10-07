@@ -108,7 +108,7 @@ function readBrowserConfiguration() {
   const search = new URLSearchParams(window.location.search);
   const explicitMockMode = search.get('mockReviews') === '1';
   return {
-    apiBaseUrl: window.JOPDEV_REVIEWS_CONFIG?.apiBaseUrl || '',
+    apiBaseUrl: window.JOPDEV_REVIEWS_CONFIG?.apiBaseUrl || '/api',
     mockMode: explicitMockMode,
   };
 }

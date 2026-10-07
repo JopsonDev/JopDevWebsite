@@ -665,6 +665,7 @@ body {
 
 .form-field input[type="text"],
 .form-field input[type="email"],
+.form-field input[type="password"],
 .form-field textarea {
   width: 100%;
   padding: 11px 12px;
@@ -683,6 +684,12 @@ body {
 .form-field textarea:focus {
   border-color: #2563eb;
   outline: 3px solid #dbeafe;
+}
+
+.secondary-button:disabled {
+  color: #94a3b8;
+  background: #f8fafc;
+  cursor: wait;
 }
 
 .form-field input[aria-invalid="true"],
@@ -805,6 +812,138 @@ body {
   line-height: 1.6;
 }
 
+/* Private review moderation */
+.reviews-admin-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 72px 8% 100px;
+}
+
+.admin-login {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 36px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.admin-login h1,
+.admin-dashboard h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+.admin-login > p:not(.page-eyebrow) {
+  margin: 16px 0 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.admin-login code {
+  padding: 2px 5px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.admin-login form > .primary-button {
+  margin-top: 20px;
+}
+
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.admin-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-filter label {
+  font-weight: 600;
+}
+
+.admin-filter select {
+  padding: 10px 34px 10px 11px;
+  color: #172033;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.admin-review-list {
+  display: grid;
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.admin-review-card {
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.admin-review-card h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.admin-review-card time {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.admin-review-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 22px 0;
+  padding: 18px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.admin-review-details dt {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-review-details dd {
+  margin: 5px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-review-text {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.admin-review-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.danger-button {
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
 /* Changes that apply when the screen is 768px wide or smaller */
 @media (max-width: 768px) {
 
@@ -848,6 +987,37 @@ body {
 
   .reviews-page {
     padding: 48px 20px 72px;
+  }
+
+  .reviews-admin-page {
+    padding: 48px 20px 72px;
+  }
+
+  .admin-login {
+    padding: 28px 22px;
+  }
+
+  .admin-login h1,
+  .admin-dashboard h1 {
+    font-size: 36px;
+  }
+
+  .admin-toolbar,
+  .admin-filter {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-filter {
+    width: 100%;
+  }
+
+  .admin-filter select {
+    width: 100%;
+  }
+
+  .admin-review-details {
+    grid-template-columns: 1fr;
   }
 
   .reviews-intro {

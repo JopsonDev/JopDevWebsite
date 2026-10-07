@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Review moderation | JopDev</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="JopDev home">JopDev</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/reviews/">Public Reviews</a>
+      <a href="mailto:support@jopdev.com">Contact</a>
+    </nav>
+  </header>
+
+  <main class="reviews-admin-page" data-reviews-admin-page>
+    <section class="admin-login" data-admin-login aria-labelledby="admin-login-heading">
+      <p class="page-eyebrow">Private administration</p>
+      <h1 id="admin-login-heading">Review moderation</h1>
+      <p>
+        Enter the moderation token configured as the Worker&rsquo;s
+        <code>ADMIN_TOKEN</code> secret. The token stays only in this open page
+        and is not saved by the browser.
+      </p>
+
+      <form data-admin-login-form>
+        <div class="form-field">
+          <label for="admin-token">Moderation token</label>
+          <input id="admin-token" name="token" type="password" autocomplete="off" required>
+        </div>
+        <div class="form-error" data-admin-login-error role="alert" hidden></div>
+        <button class="primary-button" type="submit">Open moderation</button>
+      </form>
+    </section>
+
+    <section class="admin-dashboard" data-admin-dashboard aria-labelledby="admin-dashboard-heading" hidden>
+      <div class="admin-toolbar">
+        <div>
+          <p class="page-eyebrow">Private administration</p>
+          <h1 id="admin-dashboard-heading">Review moderation</h1>
+        </div>
+
+        <div class="admin-filter">
+          <label for="review-status-filter">Show</label>
+          <select id="review-status-filter" data-review-status-filter>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+          <button class="secondary-button" type="button" data-refresh-admin-reviews>Refresh</button>
+          <button class="secondary-button" type="button" data-lock-admin>Lock</button>
+        </div>
+      </div>
+
+      <div class="reviews-status" data-admin-loading role="status" hidden>
+        <span class="loading-spinner" aria-hidden="true"></span>
+        Loading reviews&hellip;
+      </div>
+
+      <div class="reviews-status reviews-error" data-admin-error role="alert" hidden></div>
+
+      <div class="reviews-status" data-admin-empty hidden>
+        <h2>No reviews in this queue</h2>
+        <p>Choose another status or refresh the queue.</p>
+      </div>
+
+      <div class="admin-review-list" data-admin-review-list hidden></div>
+    </section>
+  </main>
+</body>
+</html>

@@ -36,6 +36,11 @@ module.exports = merge(common, {
       template: './reviews/index.html',
       filename: 'reviews/index.html',
     }),
+
+    new HtmlWebpackPlugin({
+      template: './reviews/admin/index.html',
+      filename: 'reviews/admin/index.html',
+    }),
   ],
 
   devServer: {

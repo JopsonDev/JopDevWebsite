@@ -11,7 +11,11 @@
   "scripts": {
     "test": "node --test",
     "start": "webpack serve --open --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "start:full": "npm run build && wrangler dev --local",
+    "build": "webpack --config webpack.config.prod.js",
+    "db:migrate:local": "wrangler d1 migrations apply jopdev-reviews --local",
+    "db:migrate:remote": "wrangler d1 migrations apply jopdev-reviews --remote",
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^11.0.0",
@@ -19,6 +23,7 @@
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^5.10.0",
+    "wrangler": "^4.148.0"
   }
 }
