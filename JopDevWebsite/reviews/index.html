@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reviews | JopDev</title>
+  <meta
+    name="description"
+    content="Read reviews of JopDev or share your own experience."
+  >
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="JopDev home">JopDev</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/#about">About</a>
+      <a href="/reviews/" aria-current="page">Reviews</a>
+      <a href="mailto:support@jopdev.com">Contact</a>
+    </nav>
+  </header>
+
+  <main class="reviews-page" data-reviews-page>
+    <section class="reviews-intro" aria-labelledby="reviews-heading">
+      <div>
+        <p class="page-eyebrow">JopDev community</p>
+        <h1 id="reviews-heading">Reviews</h1>
+        <p>
+          We&rsquo;d love to hear about your experience with us. Read what
+          others have shared or leave a review of your own.
+        </p>
+      </div>
+      <button class="primary-button" type="button" data-open-review-form>
+        Leave a Review
+      </button>
+    </section>
+
+    <p class="development-notice" data-development-notice hidden>
+      Development preview: the reviews below are sample data. New submissions
+      stay only in memory and are not saved or published.
+    </p>
+
+    <section class="rating-summary" aria-labelledby="rating-summary-heading">
+      <div>
+        <p class="summary-label" id="rating-summary-heading">Overall rating</p>
+        <p class="rating-value" data-rating-value>&mdash;</p>
+      </div>
+      <div class="rating-details">
+        <div
+          class="summary-stars"
+          data-summary-stars
+          aria-label="No approved reviews yet"
+        >
+          <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+        <p data-review-count>No approved reviews yet</p>
+      </div>
+    </section>
+
+    <section class="reviews-list-section" aria-labelledby="recent-reviews-heading">
+      <div class="section-heading-row">
+        <div>
+          <p class="page-eyebrow">Community feedback</p>
+          <h2 id="recent-reviews-heading">Recent reviews</h2>
+        </div>
+      </div>
+
+      <div class="reviews-status" data-reviews-loading role="status">
+        <span class="loading-spinner" aria-hidden="true"></span>
+        Loading reviews&hellip;
+      </div>
+
+      <div class="reviews-status reviews-error" data-reviews-error role="alert" hidden>
+        <p>We couldn&rsquo;t load reviews right now.</p>
+        <button class="secondary-button" type="button" data-retry-reviews>Try again</button>
+      </div>
+
+      <div class="reviews-status reviews-empty" data-reviews-empty hidden>
+        <h3>No approved reviews yet</h3>
+        <p>Be the first to share your experience. Your review will be shown after approval.</p>
+      </div>
+
+      <div class="review-grid" data-review-list hidden></div>
+    </section>
+  </main>
+
+  <dialog class="review-dialog" data-review-dialog aria-labelledby="review-dialog-title">
+    <div class="dialog-header">
+      <div>
+        <p class="page-eyebrow">Share your experience</p>
+        <h2 id="review-dialog-title">Leave a Review</h2>
+      </div>
+      <button class="icon-button" type="button" data-close-review-form aria-label="Close review form">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="review-form-success" data-review-success role="status" tabindex="-1" hidden>
+      <div class="success-icon" aria-hidden="true">&#10003;</div>
+      <h3>Thank you for your review</h3>
+      <p data-review-success-message>
+        Your review was submitted and is pending approval. It will not appear publicly until approved.
+      </p>
+      <button class="primary-button" type="button" data-close-review-form>Done</button>
+    </div>
+
+    <form class="review-form" data-review-form novalidate>
+      <p class="form-intro">
+        All fields are required. Your email is used only for review administration
+        and is never displayed publicly.
+      </p>
+
+      <div class="form-field">
+        <label for="review-name">Name</label>
+        <input
+          id="review-name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          maxlength="80"
+          required
+          aria-describedby="review-name-error"
+        >
+        <p class="field-error" id="review-name-error" data-error-for="name"></p>
+      </div>
+
+      <div class="form-field">
+        <label for="review-email">Email</label>
+        <input
+          id="review-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          maxlength="254"
+          required
+          aria-describedby="review-email-hint review-email-error"
+        >
+        <p class="field-hint" id="review-email-hint">Never shown with your review.</p>
+        <p class="field-error" id="review-email-error" data-error-for="email"></p>
+      </div>
+
+      <fieldset class="form-field rating-field" aria-describedby="review-rating-error">
+        <legend>Star rating</legend>
+        <div class="rating-options" data-rating-options>
+          <input class="visually-hidden" id="rating-1" name="rating" type="radio" value="1" required>
+          <label for="rating-1" title="1 star"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">1 star</span></label>
+          <input class="visually-hidden" id="rating-2" name="rating" type="radio" value="2">
+          <label for="rating-2" title="2 stars"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">2 stars</span></label>
+          <input class="visually-hidden" id="rating-3" name="rating" type="radio" value="3">
+          <label for="rating-3" title="3 stars"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">3 stars</span></label>
+          <input class="visually-hidden" id="rating-4" name="rating" type="radio" value="4">
+          <label for="rating-4" title="4 stars"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">4 stars</span></label>
+          <input class="visually-hidden" id="rating-5" name="rating" type="radio" value="5">
+          <label for="rating-5" title="5 stars"><span aria-hidden="true">&#9733;</span><span class="visually-hidden">5 stars</span></label>
+        </div>
+        <p class="field-error" id="review-rating-error" data-error-for="rating"></p>
+      </fieldset>
+
+      <div class="form-field">
+        <div class="label-row">
+          <label for="review-text">Review / comments</label>
+          <span data-character-count>0 / 1,000</span>
+        </div>
+        <textarea
+          id="review-text"
+          name="reviewText"
+          rows="6"
+          minlength="10"
+          maxlength="1000"
+          required
+          aria-describedby="review-text-error"
+        ></textarea>
+        <p class="field-error" id="review-text-error" data-error-for="reviewText"></p>
+      </div>
+
+      <div class="honeypot-field" aria-hidden="true">
+        <label for="review-website">Website</label>
+        <input id="review-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-error" data-submit-error role="alert" hidden></div>
+
+      <div class="form-actions">
+        <button class="secondary-button" type="button" data-close-review-form>Cancel</button>
+        <button class="primary-button" type="submit" data-submit-review>
+          <span data-submit-label>Submit Review</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

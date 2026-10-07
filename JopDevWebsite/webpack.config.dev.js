@@ -31,6 +31,11 @@ module.exports = merge(common, {
       template: './rakingpix/terms.html',
       filename: 'rakingpix/terms/index.html',
     }),
+
+    new HtmlWebpackPlugin({
+      template: './reviews/index.html',
+      filename: 'reviews/index.html',
+    }),
   ],
 
   devServer: {

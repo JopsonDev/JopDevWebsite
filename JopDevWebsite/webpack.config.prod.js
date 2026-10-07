@@ -30,6 +30,11 @@ module.exports = merge(common, {
       filename: 'rakingpix/terms/index.html'
     }),
 
+    new HtmlWebpackPlugin({
+      template: './reviews/index.html',
+      filename: 'reviews/index.html',
+    }),
+
     new CopyPlugin({
       patterns: [
         { from: 'img', to: 'img' },
