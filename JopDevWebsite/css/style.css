@@ -146,6 +146,149 @@ body {
   color: #64748b;
 }
 
+/* About JopDev on the homepage */
+.about-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 96px 6% 48px;
+}
+
+.about-hero {
+  max-width: 880px;
+}
+
+.about-hero h1 {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.08;
+}
+
+.about-hero > p:not(.page-eyebrow) {
+  max-width: 800px;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.about-hero .about-lede {
+  margin: 24px 0 0;
+  color: #172033;
+  font-size: 24px;
+  line-height: 1.55;
+}
+
+.about-hero .about-lede + p {
+  margin: 18px 0 0;
+}
+
+.about-build {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+  gap: 56px;
+  align-items: start;
+  margin-top: 96px;
+}
+
+.about-section-heading h2,
+.developer-copy h2,
+.about-purpose h2 {
+  margin: 0;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.about-build-card {
+  padding: 34px 36px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.about-build-card > p {
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about-capabilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-capabilities li {
+  padding: 8px 12px;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.developer-section {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+  margin-top: 96px;
+  padding: 48px;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+}
+
+.developer-photo-frame {
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
+}
+
+.developer-photo-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.developer-copy > p:not(.page-eyebrow) {
+  margin: 18px 0 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.about-purpose {
+  margin-top: 96px;
+  padding: 52px 56px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.about-purpose > p:not(.page-eyebrow) {
+  max-width: 820px;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.about-purpose .about-principle {
+  max-width: 900px;
+  margin: 30px 0 0;
+  padding-top: 28px;
+  color: #2563eb;
+  border-top: 1px solid #dbeafe;
+  font-size: 28px;
+  line-height: 1.35;
+}
+
 /* Featured project on the JopDev homepage */
 .project-showcase {
   max-width: 1100px;
@@ -955,6 +1098,25 @@ body {
   background: #fef2f2;
 }
 
+@media (max-width: 900px) {
+  .about-build,
+  .developer-section {
+    grid-template-columns: 1fr;
+  }
+
+  .about-build {
+    gap: 24px;
+  }
+
+  .developer-section {
+    gap: 40px;
+  }
+
+  .developer-photo-frame {
+    width: min(100%, 300px);
+  }
+}
+
 /* Changes that apply when the screen is 768px wide or smaller */
 @media (max-width: 768px) {
 
@@ -994,6 +1156,50 @@ body {
     flex-direction: column;
     gap: 24px;
     padding: 28px;
+  }
+
+  .about-page {
+    padding: 56px 20px 24px;
+  }
+
+  .about-hero h1 {
+    font-size: 44px;
+  }
+
+  .about-hero .about-lede {
+    font-size: 21px;
+  }
+
+  .about-build,
+  .developer-section,
+  .about-purpose {
+    margin-top: 72px;
+  }
+
+  .about-section-heading h2,
+  .developer-copy h2,
+  .about-purpose h2 {
+    font-size: 32px;
+  }
+
+  .about-build-card {
+    padding: 28px 24px;
+  }
+
+  .developer-section {
+    padding: 28px 22px 32px;
+  }
+
+  .developer-photo-frame {
+    width: min(100%, 280px);
+  }
+
+  .about-purpose {
+    padding: 34px 24px;
+  }
+
+  .about-purpose .about-principle {
+    font-size: 24px;
   }
 
   .reviews-page {
