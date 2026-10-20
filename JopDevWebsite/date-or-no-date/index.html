@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date or No Date | JopDev</title>
+  <meta
+    name="description"
+    content="Play Date or No Date, a customizable mystery date-night game from JopDev."
+  >
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="JopDev home">JopDev</a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/about/">About</a>
+      <a href="/reviews/">Reviews</a>
+      <a href="mailto:support@jopdev.com">Contact</a>
+    </nav>
+  </header>
+
+  <main class="date-game-page" data-date-game>
+    <section class="date-game-hero" aria-labelledby="date-game-heading">
+      <p class="date-game-kicker">A mystery date-night game</p>
+      <h1 id="date-game-heading"><span>Date</span> or No Date</h1>
+      <p>
+        Pick a mystery case, reveal the other date ideas, and decide whether
+        to accept the Banker&rsquo;s offer or hold out for the date inside your case.
+      </p>
+      <div class="date-game-hero-actions">
+        <button class="date-game-button date-game-button-primary" type="button" data-start-game>
+          Start a new game
+        </button>
+        <button class="date-game-button date-game-button-secondary" type="button" data-open-customizer>
+          Customize dates
+        </button>
+      </div>
+      <p class="date-game-save-note">Your custom date ideas are saved only in this browser.</p>
+    </section>
+
+    <section class="date-game-shell" aria-live="polite">
+      <div class="date-game-topbar">
+        <div>
+          <p class="date-game-label">Game status</p>
+          <h2 data-game-status>Ready to play?</h2>
+          <p data-game-instructions>
+            Start a game, then choose the case you want to keep until the end.
+          </p>
+        </div>
+        <button class="date-game-text-button" type="button" data-reset-game hidden>
+          Restart game
+        </button>
+      </div>
+
+      <div class="date-game-progress" data-game-progress hidden>
+        <div class="date-game-progress-copy">
+          <span data-round-label>Choose your case</span>
+          <span data-progress-count></span>
+        </div>
+        <div class="date-game-progress-track" aria-hidden="true">
+          <span data-progress-bar></span>
+        </div>
+      </div>
+
+      <div class="date-game-layout">
+        <aside class="date-game-sidebar" aria-label="Your selected case">
+          <p class="date-game-label">Your case</p>
+          <div class="player-case" data-player-case>
+            <span class="player-case-number" data-player-case-number>&mdash;</span>
+            <span data-player-case-caption>Not selected</span>
+          </div>
+
+          <div class="last-reveal" data-last-reveal hidden>
+            <p class="date-game-label">Just revealed</p>
+            <h3 data-last-reveal-title></h3>
+            <p data-last-reveal-description></p>
+            <span class="date-budget" data-last-reveal-budget></span>
+          </div>
+        </aside>
+
+        <div class="case-board" data-case-board aria-label="Mystery date cases"></div>
+      </div>
+    </section>
+
+    <section class="date-game-how-to" aria-labelledby="date-game-how-to-heading">
+      <div>
+        <p class="date-game-kicker">How it works</p>
+        <h2 id="date-game-how-to-heading">One case. Six offers. One great date.</h2>
+      </div>
+      <ol>
+        <li><span>1</span>Choose one of 16 cases to keep as your mystery date.</li>
+        <li><span>2</span>Open cases each round to reveal dates you didn&rsquo;t choose.</li>
+        <li><span>3</span>Accept a Banker offer or say &ldquo;No Date&rdquo; and keep playing.</li>
+      </ol>
+    </section>
+  </main>
+
+  <dialog class="date-game-dialog banker-dialog" data-banker-dialog aria-labelledby="banker-heading">
+    <div class="banker-phone" aria-hidden="true">&#9742;</div>
+    <p class="date-game-kicker">The Banker is calling</p>
+    <h2 id="banker-heading">The offer is&hellip;</h2>
+    <div class="banker-offer">
+      <h3 data-offer-title></h3>
+      <p data-offer-description></p>
+      <span class="date-budget" data-offer-budget></span>
+    </div>
+    <p class="banker-question">Date or No Date?</p>
+    <div class="date-game-dialog-actions">
+      <button class="date-game-button date-game-button-primary" type="button" data-accept-offer>
+        Date &mdash; take the offer
+      </button>
+      <button class="date-game-button date-game-button-secondary" type="button" data-decline-offer>
+        No Date &mdash; keep playing
+      </button>
+    </div>
+  </dialog>
+
+  <dialog class="date-game-dialog final-dialog" data-final-dialog aria-labelledby="final-heading">
+    <p class="date-game-kicker" data-final-kicker>Final decision</p>
+    <h2 id="final-heading" data-final-heading>Keep your case or swap?</h2>
+    <p data-final-copy>
+      Only two cases remain. Keep the case you chose at the beginning or swap it for the final case.
+    </p>
+    <div class="final-cases" data-final-choices>
+      <button type="button" data-final-choice="keep">
+        <span>Your case</span>
+        <strong data-final-player-case></strong>
+        <small>Keep</small>
+      </button>
+      <button type="button" data-final-choice="swap">
+        <span>Last case</span>
+        <strong data-final-other-case></strong>
+        <small>Swap</small>
+      </button>
+    </div>
+    <div class="date-game-result" data-game-result hidden>
+      <p class="date-game-label">Your date is</p>
+      <h3 data-result-title></h3>
+      <p data-result-description></p>
+      <span class="date-budget" data-result-budget></span>
+    </div>
+    <div class="date-game-dialog-actions" data-final-actions hidden>
+      <button class="date-game-button date-game-button-primary" type="button" data-play-again>
+        Play again
+      </button>
+      <button class="date-game-button date-game-button-secondary" type="button" data-close-result>
+        Close
+      </button>
+    </div>
+  </dialog>
+
+  <dialog class="date-game-dialog customizer-dialog" data-customizer-dialog aria-labelledby="customizer-heading">
+    <div class="customizer-header">
+      <div>
+        <p class="date-game-kicker">Make it yours</p>
+        <h2 id="customizer-heading">Customize date ideas</h2>
+        <p>Edit the 22 ideas below. Each game randomly chooses 16 of them.</p>
+      </div>
+      <button class="date-game-close" type="button" data-close-customizer aria-label="Close customizer">
+        &times;
+      </button>
+    </div>
+
+    <form data-customizer-form>
+      <div class="custom-date-list" data-custom-date-list></div>
+      <div class="customizer-footer">
+        <button class="date-game-text-button" type="button" data-reset-dates>
+          Restore default ideas
+        </button>
+        <div class="date-game-dialog-actions">
+          <button class="date-game-button date-game-button-secondary" type="button" data-close-customizer>
+            Cancel
+          </button>
+          <button class="date-game-button date-game-button-primary" type="submit">
+            Save date ideas
+          </button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>

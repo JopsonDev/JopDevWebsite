@@ -16,6 +16,11 @@ module.exports = merge(common, {
     }),
 
     new HtmlWebpackPlugin({
+      template: './date-or-no-date/index.html',
+      filename: 'date-or-no-date/index.html',
+    }),
+
+    new HtmlWebpackPlugin({
       template: './rakingpix/index.html',
       filename: 'rakingpix/index.html'
     }),
