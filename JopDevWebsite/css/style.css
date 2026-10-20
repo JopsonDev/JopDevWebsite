@@ -465,6 +465,7 @@ body {
 .date-game-close {
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .date-game-button {
@@ -706,6 +707,7 @@ body {
     0 10px 22px rgba(2, 6, 23, 0.24);
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
@@ -716,6 +718,7 @@ body {
   background: linear-gradient(115deg, transparent 22%, rgba(255, 255, 255, 0.36) 46%, transparent 68%);
   border-radius: inherit;
   opacity: 0;
+  pointer-events: none;
   transform: translateX(-100%);
   transition: opacity 180ms ease, transform 480ms ease;
 }
@@ -864,6 +867,80 @@ body {
   font-size: 34px;
 }
 
+.case-reveal-dialog {
+  width: min(700px, calc(100% - 32px));
+  padding: 42px;
+  border-color: rgba(249, 168, 212, 0.48);
+}
+
+.case-reveal-number {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: 12px;
+  margin: 12px auto 22px;
+  padding: 16px 28px;
+  color: #422006;
+  background: linear-gradient(145deg, #fde68a, #f59e0b);
+  border: 2px solid #fcd34d;
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.22),
+    0 16px 34px rgba(2, 6, 23, 0.35);
+}
+
+.case-reveal-number span {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-reveal-number strong {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+.case-reveal-contained {
+  margin: 0 0 10px;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-reveal-date {
+  padding: 26px;
+  background: linear-gradient(145deg, rgba(236, 72, 153, 0.13), rgba(245, 158, 11, 0.09));
+  border: 1px solid rgba(249, 168, 212, 0.3);
+  border-radius: 14px;
+}
+
+.case-reveal-date h2 {
+  color: #fbcfe8;
+  font-size: clamp(30px, 5vw, 42px);
+  line-height: 1.15;
+}
+
+.case-reveal-date p {
+  margin: 14px 0 18px;
+  color: #cbd5e1;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.case-reveal-continue {
+  width: 100%;
+  margin-top: 24px;
+  font-size: 17px;
+}
+
+.case-reveal-dialog[open] .case-reveal-number {
+  animation: date-game-case-number-pop 480ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .banker-phone {
   display: grid;
   place-items: center;
@@ -982,6 +1059,7 @@ body {
   border-radius: 12px;
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .final-cases button:hover {
@@ -1165,14 +1243,20 @@ body {
 }
 
 @keyframes date-game-case-in {
-  from { opacity: 0; transform: translateY(20px) scale(0.92); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes date-game-case-selected {
   0% { transform: scale(1); }
-  38% { transform: translateY(-7px) scale(1.08); box-shadow: 0 0 0 8px rgba(244, 114, 182, 0.18); }
+  38% { transform: scale(1.035); box-shadow: 0 0 0 6px rgba(244, 114, 182, 0.18); }
   100% { transform: scale(1); }
+}
+
+@keyframes date-game-case-number-pop {
+  0% { opacity: 0; transform: scale(0.86); }
+  70% { transform: scale(1.035); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes date-game-case-reveal {
@@ -2117,6 +2201,33 @@ body {
     font-size: 29px;
   }
 
+  .case-reveal-dialog {
+    padding: 28px 20px;
+  }
+
+  .case-reveal-number {
+    margin-bottom: 18px;
+    padding: 14px 24px;
+  }
+
+  .case-reveal-number strong {
+    font-size: 54px;
+  }
+
+  .case-reveal-date {
+    padding: 22px 18px;
+  }
+
+  .mystery-case:not(:disabled):hover {
+    filter: none;
+    transform: none;
+  }
+
+  .mystery-case:not(:disabled):hover::after {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
   .final-cases {
     grid-template-columns: 1fr;
   }
@@ -2381,6 +2492,7 @@ body {
   .mystery-case.is-just-selected,
   .mystery-case.is-newly-opened,
   .date-game-dialog[open],
+  .case-reveal-dialog[open] .case-reveal-number,
   .banker-dialog[open] .banker-phone,
   .banker-dialog[open] .banker-offer,
   .date-game-result:not([hidden]),

@@ -101,6 +101,23 @@
     </section>
   </main>
 
+  <dialog class="date-game-dialog case-reveal-dialog" data-case-reveal-dialog aria-labelledby="case-reveal-heading">
+    <p class="date-game-kicker">Case revealed</p>
+    <div class="case-reveal-number" aria-label="Revealed case number">
+      <span>Case</span>
+      <strong data-reveal-case-number></strong>
+    </div>
+    <p class="case-reveal-contained">This case contains</p>
+    <div class="case-reveal-date">
+      <h2 id="case-reveal-heading" data-reveal-date-title></h2>
+      <p data-reveal-date-description></p>
+      <span class="date-budget" data-reveal-date-budget></span>
+    </div>
+    <button class="date-game-button date-game-button-primary case-reveal-continue" type="button" data-continue-after-reveal>
+      Continue
+    </button>
+  </dialog>
+
   <dialog class="date-game-dialog banker-dialog" data-banker-dialog aria-labelledby="banker-heading">
     <div class="banker-phone" aria-hidden="true">&#9742;</div>
     <p class="date-game-kicker">The Banker is calling</p>

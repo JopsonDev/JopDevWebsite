@@ -131,6 +131,7 @@ export function initDateOrNoDatePage(root = globalThis.document) {
 
   const storage = globalThis.localStorage;
   const caseBoard = page.querySelector('[data-case-board]');
+  const caseRevealDialog = root.querySelector('[data-case-reveal-dialog]');
   const bankerDialog = root.querySelector('[data-banker-dialog]');
   const finalDialog = root.querySelector('[data-final-dialog]');
   const customizerDialog = root.querySelector('[data-customizer-dialog]');
@@ -258,7 +259,7 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     setText(
       page,
       '[data-progress-count]',
-      game.phase === 'opening'
+      ['opening', 'reveal'].includes(game.phase)
         ? `${current} of ${target} cases opened`
         : 'Waiting on your decision',
     );
@@ -300,9 +301,8 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     updatePlayerCase();
     updateProgress();
     renderBoard();
-    const prefersReducedMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     page.querySelector('.date-game-shell').scrollIntoView({
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      behavior: 'auto',
       block: 'start',
     });
   }
@@ -346,11 +346,21 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     }
 
     selectedCase.opened = true;
+    game.phase = 'reveal';
     game.lastOpenedCaseNumber = caseNumber;
     game.openedThisRound += 1;
     showReveal(selectedCase.idea);
+    setText(caseRevealDialog, '[data-reveal-case-number]', String(caseNumber));
+    setText(caseRevealDialog, '[data-reveal-date-title]', selectedCase.idea.title);
+    setText(caseRevealDialog, '[data-reveal-date-description]', selectedCase.idea.description);
+    setText(caseRevealDialog, '[data-reveal-date-budget]', selectedCase.idea.budget);
+    updateGameCopy(
+      `Case ${caseNumber} revealed`,
+      `${selectedCase.idea.title} is off the board.`,
+    );
     renderBoard();
     updateProgress();
+    setDialogOpen(caseRevealDialog, true);
     const activeGame = game;
     globalThis.setTimeout(() => {
       if (game === activeGame && game.lastOpenedCaseNumber === caseNumber) {
@@ -358,17 +368,28 @@ export function initDateOrNoDatePage(root = globalThis.document) {
       }
     }, 700);
 
+  }
+
+  function continueAfterReveal() {
+    if (!game || game.phase !== 'reveal') {
+      return;
+    }
+
+    setDialogOpen(caseRevealDialog, false);
     const target = getRoundCaseCount(game.roundIndex);
     if (game.openedThisRound >= target) {
-      globalThis.setTimeout(showBankerOffer, 450);
+      showBankerOffer();
       return;
     }
 
     const remaining = target - game.openedThisRound;
+    game.phase = 'opening';
     updateGameCopy(
-      `${selectedCase.idea.title} is off the board`,
+      'Choose another case',
       `Open ${remaining} more ${remaining === 1 ? 'case' : 'cases'} this round.`,
     );
+    updateProgress();
+    renderBoard();
   }
 
   function showResult(idea, heading, kicker) {
@@ -516,6 +537,7 @@ export function initDateOrNoDatePage(root = globalThis.document) {
   page.querySelector('[data-start-game]').addEventListener('click', startGame);
   page.querySelector('[data-reset-game]').addEventListener('click', startGame);
   page.querySelector('[data-open-customizer]').addEventListener('click', openCustomizer);
+  caseRevealDialog.querySelector('[data-continue-after-reveal]').addEventListener('click', continueAfterReveal);
   bankerDialog.querySelector('[data-accept-offer]').addEventListener('click', acceptOffer);
   bankerDialog.querySelector('[data-decline-offer]').addEventListener('click', declineOffer);
   finalDialog.querySelector('[data-final-choices]').addEventListener('click', (event) => {
@@ -550,6 +572,7 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     setDialogOpen(customizerDialog, false);
   });
 
+  caseRevealDialog.addEventListener('cancel', (event) => event.preventDefault());
   bankerDialog.addEventListener('cancel', (event) => event.preventDefault());
   finalDialog.addEventListener('cancel', (event) => event.preventDefault());
 
