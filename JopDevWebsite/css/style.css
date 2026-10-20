@@ -354,6 +354,9 @@ body {
 
 /* Date or No Date */
 .date-game-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   min-height: calc(100vh - 70px);
   padding: 72px 6% 96px;
   color: #f8fafc;
@@ -361,6 +364,34 @@ body {
     radial-gradient(circle at 14% 18%, rgba(236, 72, 153, 0.2), transparent 28rem),
     radial-gradient(circle at 86% 34%, rgba(245, 158, 11, 0.14), transparent 30rem),
     #0f172a;
+  background-size: 120% 120%;
+  animation: date-game-ambient-shift 18s ease-in-out infinite alternate;
+}
+
+.date-game-page::before,
+.date-game-page::after {
+  position: absolute;
+  z-index: -1;
+  width: 360px;
+  height: 360px;
+  content: "";
+  pointer-events: none;
+  border: 1px solid rgba(249, 168, 212, 0.12);
+  border-radius: 50%;
+}
+
+.date-game-page::before {
+  top: 11%;
+  left: -210px;
+  box-shadow: 0 0 90px rgba(236, 72, 153, 0.13), inset 0 0 90px rgba(236, 72, 153, 0.08);
+  animation: date-game-orbit-left 14s ease-in-out infinite alternate;
+}
+
+.date-game-page::after {
+  right: -230px;
+  bottom: 8%;
+  box-shadow: 0 0 100px rgba(245, 158, 11, 0.12), inset 0 0 90px rgba(245, 158, 11, 0.07);
+  animation: date-game-orbit-right 17s ease-in-out infinite alternate;
 }
 
 .date-game-hero,
@@ -375,6 +406,10 @@ body {
   max-width: 800px;
   padding: 40px 0 68px;
   text-align: center;
+}
+
+.date-game-hero .date-game-kicker {
+  animation: date-game-rise-in 560ms 80ms both;
 }
 
 .date-game-kicker,
@@ -392,10 +427,16 @@ body {
   font-size: clamp(48px, 8vw, 82px);
   line-height: 0.98;
   letter-spacing: -0.045em;
+  animation: date-game-rise-in 620ms 150ms both;
 }
 
 .date-game-hero h1 span {
-  color: #f472b6;
+  color: transparent;
+  background: linear-gradient(100deg, #f472b6 15%, #fbcfe8 48%, #f472b6 78%);
+  background-size: 220% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: date-game-title-shimmer 5s linear infinite;
 }
 
 .date-game-hero > p:not(.date-game-kicker, .date-game-save-note) {
@@ -404,6 +445,7 @@ body {
   color: #cbd5e1;
   font-size: 19px;
   line-height: 1.7;
+  animation: date-game-rise-in 620ms 220ms both;
 }
 
 .date-game-hero-actions,
@@ -414,6 +456,10 @@ body {
   margin-top: 30px;
 }
 
+.date-game-hero-actions {
+  animation: date-game-rise-in 620ms 300ms both;
+}
+
 .date-game-button,
 .date-game-text-button,
 .date-game-close {
@@ -422,10 +468,34 @@ body {
 }
 
 .date-game-button {
+  position: relative;
+  overflow: hidden;
   border: 1px solid transparent;
   padding: 13px 20px;
   border-radius: 9px;
   font-weight: 750;
+  transform: translateY(0);
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.date-game-button::after {
+  position: absolute;
+  top: -35%;
+  left: -55%;
+  width: 42%;
+  height: 170%;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-18deg);
+  transition: left 420ms ease;
+}
+
+.date-game-button:hover {
+  transform: translateY(-2px);
+}
+
+.date-game-button:hover::after {
+  left: 115%;
 }
 
 .date-game-button-primary {
@@ -452,6 +522,7 @@ body {
   margin: 14px 0 0;
   color: #94a3b8;
   font-size: 13px;
+  animation: date-game-rise-in 620ms 380ms both;
 }
 
 .date-game-shell {
@@ -461,6 +532,7 @@ body {
   border-radius: 20px;
   box-shadow: 0 24px 70px rgba(2, 6, 23, 0.38);
   backdrop-filter: blur(12px);
+  animation: date-game-shell-in 700ms 360ms both;
 }
 
 .date-game-topbar {
@@ -473,6 +545,10 @@ body {
 .date-game-topbar h2 {
   margin: 0;
   font-size: 30px;
+}
+
+.date-game-topbar h2.is-updating {
+  animation: date-game-status-pop 360ms ease both;
 }
 
 .date-game-topbar > div > p:last-child {
@@ -522,6 +598,7 @@ body {
   height: 100%;
   background: linear-gradient(90deg, #f472b6, #fbbf24);
   border-radius: inherit;
+  box-shadow: 0 0 18px rgba(244, 114, 182, 0.5);
   transition: width 240ms ease;
 }
 
@@ -554,6 +631,7 @@ body {
   color: #f8fafc;
   background: linear-gradient(145deg, rgba(236, 72, 153, 0.2), rgba(245, 158, 11, 0.11));
   border: 1px solid #f472b6;
+  box-shadow: 0 0 34px rgba(244, 114, 182, 0.15);
 }
 
 .player-case-number {
@@ -576,6 +654,10 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
+}
+
+.last-reveal.is-entering {
+  animation: date-game-reveal-panel 480ms ease both;
 }
 
 .last-reveal h3 {
@@ -624,14 +706,35 @@ body {
     0 10px 22px rgba(2, 6, 23, 0.24);
   font: inherit;
   cursor: pointer;
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.mystery-case::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(115deg, transparent 22%, rgba(255, 255, 255, 0.36) 46%, transparent 68%);
+  border-radius: inherit;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 180ms ease, transform 480ms ease;
 }
 
 .mystery-case:not(:disabled):hover {
-  transform: translateY(-4px);
+  filter: saturate(1.08);
+  transform: translateY(-6px) rotate(-1deg) scale(1.02);
   box-shadow:
     inset 0 0 0 3px rgba(255, 255, 255, 0.28),
     0 16px 28px rgba(2, 6, 23, 0.34);
+}
+
+.mystery-case:not(:disabled):hover::after {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.mystery-case.is-entering {
+  animation: date-game-case-in 520ms calc(var(--case-index) * 35ms) both;
 }
 
 .mystery-case-handle {
@@ -657,6 +760,10 @@ body {
   box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.22);
 }
 
+.mystery-case.is-just-selected {
+  animation: date-game-case-selected 620ms ease both;
+}
+
 .mystery-case.is-player-case .mystery-case-handle {
   border-color: #f9a8d4;
 }
@@ -668,6 +775,10 @@ body {
   background: #1e293b;
   border: 1px solid #334155;
   box-shadow: none;
+}
+
+.mystery-case.is-newly-opened {
+  animation: date-game-case-reveal 560ms ease both;
 }
 
 .mystery-case.is-opened .mystery-case-number {
@@ -739,6 +850,10 @@ body {
   text-align: center;
 }
 
+.date-game-dialog[open] {
+  animation: date-game-dialog-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .date-game-dialog::backdrop {
   background: rgba(2, 6, 23, 0.8);
   backdrop-filter: blur(5px);
@@ -761,6 +876,10 @@ body {
   font-size: 29px;
 }
 
+.banker-dialog[open] .banker-phone {
+  animation: date-game-phone-ring 1.25s ease-in-out infinite;
+}
+
 .banker-offer,
 .date-game-result {
   margin-top: 24px;
@@ -769,6 +888,56 @@ body {
   border: 1px solid rgba(249, 168, 212, 0.3);
   border-radius: 14px;
 }
+
+.banker-dialog[open] .banker-offer {
+  animation: date-game-offer-in 460ms 170ms both;
+}
+
+.date-game-result {
+  position: relative;
+  overflow: hidden;
+}
+
+.date-game-result > *:not(.result-confetti) {
+  position: relative;
+  z-index: 1;
+}
+
+.date-game-result:not([hidden]) {
+  animation: date-game-result-in 540ms ease both;
+}
+
+.result-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.result-confetti span {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 8px;
+  height: 14px;
+  background: #f472b6;
+  border-radius: 2px;
+  animation: date-game-confetti 1.5s ease-out both;
+}
+
+.result-confetti span:nth-child(2n) { background: #fbbf24; }
+.result-confetti span:nth-child(3n) { background: #93c5fd; }
+.result-confetti span:nth-child(1) { --confetti-x: -190px; animation-delay: 40ms; }
+.result-confetti span:nth-child(2) { --confetti-x: -145px; animation-delay: 180ms; }
+.result-confetti span:nth-child(3) { --confetti-x: -108px; animation-delay: 80ms; }
+.result-confetti span:nth-child(4) { --confetti-x: -72px; animation-delay: 240ms; }
+.result-confetti span:nth-child(5) { --confetti-x: -34px; animation-delay: 130ms; }
+.result-confetti span:nth-child(6) { --confetti-x: -10px; animation-delay: 30ms; }
+.result-confetti span:nth-child(7) { --confetti-x: 28px; animation-delay: 210ms; }
+.result-confetti span:nth-child(8) { --confetti-x: 60px; animation-delay: 90ms; }
+.result-confetti span:nth-child(9) { --confetti-x: 98px; animation-delay: 260ms; }
+.result-confetti span:nth-child(10) { --confetti-x: 132px; animation-delay: 120ms; }
+.result-confetti span:nth-child(11) { --confetti-x: 166px; animation-delay: 200ms; }
+.result-confetti span:nth-child(12) { --confetti-x: 195px; animation-delay: 60ms; }
 
 .banker-offer h3,
 .date-game-result h3 {
@@ -956,6 +1125,87 @@ body {
 .custom-date-item textarea:focus {
   outline: 3px solid #f9a8d4;
   outline-offset: 3px;
+}
+
+@keyframes date-game-ambient-shift {
+  to { background-position: 8% 4%, 92% 42%; }
+}
+
+@keyframes date-game-orbit-left {
+  to { transform: translate(70px, 110px) scale(1.12); }
+}
+
+@keyframes date-game-orbit-right {
+  to { transform: translate(-80px, -100px) scale(0.9); }
+}
+
+@keyframes date-game-rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes date-game-title-shimmer {
+  to { background-position: -220% center; }
+}
+
+@keyframes date-game-shell-in {
+  from { opacity: 0; transform: translateY(24px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes date-game-status-pop {
+  0% { opacity: 0.4; transform: translateY(7px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes date-game-reveal-panel {
+  0% { opacity: 0; transform: translateY(10px) scale(0.97); }
+  65% { transform: translateY(-2px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes date-game-case-in {
+  from { opacity: 0; transform: translateY(20px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes date-game-case-selected {
+  0% { transform: scale(1); }
+  38% { transform: translateY(-7px) scale(1.08); box-shadow: 0 0 0 8px rgba(244, 114, 182, 0.18); }
+  100% { transform: scale(1); }
+}
+
+@keyframes date-game-case-reveal {
+  0% { opacity: 0.35; transform: rotateY(75deg) scale(0.9); }
+  70% { transform: rotateY(-5deg) scale(1.02); }
+  100% { opacity: 1; transform: rotateY(0) scale(1); }
+}
+
+@keyframes date-game-dialog-in {
+  from { opacity: 0; transform: translateY(18px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes date-game-phone-ring {
+  0%, 46%, 100% { transform: rotate(0); }
+  8%, 24% { transform: rotate(-11deg) scale(1.06); }
+  16%, 32% { transform: rotate(11deg) scale(1.06); }
+}
+
+@keyframes date-game-offer-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes date-game-result-in {
+  0% { opacity: 0; transform: scale(0.9); }
+  72% { transform: scale(1.025); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes date-game-confetti {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0); }
+  100% { opacity: 0; transform: translate(var(--confetti-x), 240px) rotate(520deg); }
 }
 
 /* Reusable layout for privacy, terms, and support pages */
@@ -2112,6 +2362,39 @@ body {
 
 @media only screen and (min-width: 35em) {
   /* Style adjustments for viewports that meet the condition */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .date-game-page,
+  .date-game-page::before,
+  .date-game-page::after,
+  .date-game-hero .date-game-kicker,
+  .date-game-hero h1,
+  .date-game-hero h1 span,
+  .date-game-hero > p,
+  .date-game-hero-actions,
+  .date-game-save-note,
+  .date-game-shell,
+  .date-game-topbar h2.is-updating,
+  .last-reveal.is-entering,
+  .mystery-case.is-entering,
+  .mystery-case.is-just-selected,
+  .mystery-case.is-newly-opened,
+  .date-game-dialog[open],
+  .banker-dialog[open] .banker-phone,
+  .banker-dialog[open] .banker-offer,
+  .date-game-result:not([hidden]),
+  .result-confetti span {
+    animation: none !important;
+  }
+
+  .date-game-button,
+  .date-game-button::after,
+  .mystery-case,
+  .mystery-case::after,
+  .date-game-progress-track span {
+    transition: none !important;
+  }
 }
 
 @media print,

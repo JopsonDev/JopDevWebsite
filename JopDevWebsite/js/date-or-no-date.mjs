@@ -141,6 +141,17 @@ export function initDateOrNoDatePage(root = globalThis.document) {
   function updateGameCopy(status, instructions) {
     setText(page, '[data-game-status]', status);
     setText(page, '[data-game-instructions]', instructions);
+
+    const statusHeading = page.querySelector('[data-game-status]');
+    statusHeading.classList.remove('is-updating');
+    globalThis.requestAnimationFrame(() => {
+      statusHeading.classList.add('is-updating');
+      statusHeading.addEventListener(
+        'animationend',
+        () => statusHeading.classList.remove('is-updating'),
+        { once: true },
+      );
+    });
   }
 
   function setDialogOpen(dialog, isOpen) {
@@ -160,11 +171,16 @@ export function initDateOrNoDatePage(root = globalThis.document) {
       idea: null,
     }));
 
-    cases.forEach((gameCase) => {
+    cases.forEach((gameCase, index) => {
       const button = root.createElement('button');
       button.type = 'button';
       button.className = 'mystery-case';
       button.dataset.caseNumber = String(gameCase.number);
+      button.style.setProperty('--case-index', String(index));
+
+      if (game?.animateBoard) {
+        button.classList.add('is-entering');
+      }
 
       if (gameCase.opened) {
         button.classList.add('is-opened');
@@ -203,8 +219,20 @@ export function initDateOrNoDatePage(root = globalThis.document) {
         }
       }
 
+      if (game?.justSelectedCaseNumber === gameCase.number) {
+        button.classList.add('is-just-selected');
+      }
+
+      if (game?.lastOpenedCaseNumber === gameCase.number) {
+        button.classList.add('is-newly-opened');
+      }
+
       caseBoard.append(button);
     });
+
+    if (game) {
+      game.animateBoard = false;
+    }
   }
 
   function updateProgress() {
@@ -250,6 +278,8 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     setText(reveal, '[data-last-reveal-title]', idea.title);
     setText(reveal, '[data-last-reveal-description]', idea.description);
     setText(reveal, '[data-last-reveal-budget]', idea.budget);
+    reveal.classList.remove('is-entering');
+    globalThis.requestAnimationFrame(() => reveal.classList.add('is-entering'));
   }
 
   function startGame() {
@@ -259,18 +289,27 @@ export function initDateOrNoDatePage(root = globalThis.document) {
       playerCaseNumber: null,
       roundIndex: 0,
       openedThisRound: 0,
+      animateBoard: true,
+      justSelectedCaseNumber: null,
+      lastOpenedCaseNumber: null,
     };
 
+    page.classList.add('is-game-started');
     page.querySelector('[data-last-reveal]').hidden = true;
     updateGameCopy('Choose your mystery case', 'This case stays sealed while you reveal the others.');
     updatePlayerCase();
     updateProgress();
     renderBoard();
-    page.querySelector('.date-game-shell').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const prefersReducedMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    page.querySelector('.date-game-shell').scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
   }
 
   function choosePlayerCase(caseNumber) {
     game.playerCaseNumber = caseNumber;
+    game.justSelectedCaseNumber = caseNumber;
     game.phase = 'opening';
     const target = getRoundCaseCount(game.roundIndex);
     updateGameCopy(
@@ -280,6 +319,12 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     updatePlayerCase();
     updateProgress();
     renderBoard();
+    const activeGame = game;
+    globalThis.setTimeout(() => {
+      if (game === activeGame && game.justSelectedCaseNumber === caseNumber) {
+        game.justSelectedCaseNumber = null;
+      }
+    }, 700);
   }
 
   function showBankerOffer() {
@@ -301,10 +346,17 @@ export function initDateOrNoDatePage(root = globalThis.document) {
     }
 
     selectedCase.opened = true;
+    game.lastOpenedCaseNumber = caseNumber;
     game.openedThisRound += 1;
     showReveal(selectedCase.idea);
     renderBoard();
     updateProgress();
+    const activeGame = game;
+    globalThis.setTimeout(() => {
+      if (game === activeGame && game.lastOpenedCaseNumber === caseNumber) {
+        game.lastOpenedCaseNumber = null;
+      }
+    }, 700);
 
     const target = getRoundCaseCount(game.roundIndex);
     if (game.openedThisRound >= target) {
