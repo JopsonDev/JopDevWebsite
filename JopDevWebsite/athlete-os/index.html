@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Athlete OS — Private fitness planning by JopDev</title>
+  <meta name="description" content="Meet Athlete OS, a private, local-first progressive web app for editable training, nutrition, goals, analytics, and safe Coach Updates.">
+  <meta property="og:title" content="Athlete OS by JopDev">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jopdev.com/athlete-os/">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body class="athlete-showcase-body">
+  <header class="site-header">
+    <a class="brand" href="/">JopDev</a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/#projects">Projects</a>
+      <a href="/about/">About</a>
+      <a href="/reviews/">Reviews</a>
+      <a href="mailto:support@jopdev.com">Contact</a>
+    </nav>
+  </header>
+
+  <main class="athlete-showcase-page" data-athlete-os-page data-app-url="https://athlete.jopdev.com/">
+    <section class="athlete-showcase-hero">
+      <div class="athlete-showcase-copy">
+        <p class="athlete-kicker"><span></span> JopDev project · Progressive web app</p>
+        <h1>Your training system should grow with you.</h1>
+        <p class="athlete-lede">Athlete OS keeps workouts, nutrition, goals, progress, and coaching changes in one focused place—while your personal records stay in your browser on your device.</p>
+        <div class="athlete-hero-actions">
+          <a class="athlete-primary-action" href="https://athlete.jopdev.com/" data-open-athlete>Open Athlete OS <span aria-hidden="true">↗</span></a>
+          <a class="athlete-secondary-action" href="#install">Install instructions</a>
+        </div>
+        <p class="athlete-privacy-note"><strong>Private by design.</strong> No account, API key, or backend is required. Fitness records are not sent to JopDev.</p>
+      </div>
+
+      <div class="athlete-preview" aria-label="Preview of the Athlete OS dashboard">
+        <div class="athlete-preview-sidebar">
+          <div class="athlete-preview-logo"><i></i><i></i><i></i><strong>Athlete OS</strong></div>
+          <span class="is-active">Dashboard</span><span>Training</span><span>Nutrition</span><span>Goals</span><span>Coach Updates</span>
+        </div>
+        <div class="athlete-preview-main">
+          <small>TODAY</small><h2>Your training cockpit</h2>
+          <div class="athlete-preview-session"><div><small>NEXT SESSION</small><strong>Lower Strength</strong><span>3 movements · 17:30</span></div><b>View prescription</b></div>
+          <div class="athlete-preview-stats"><span><small>DAILY FUEL</small><strong>Set your target</strong></span><span><small>BODY WEIGHT</small><strong>Private & local</strong></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="athlete-feature-section" aria-labelledby="athlete-features-title">
+      <div class="athlete-section-heading"><p>BUILT TO EVOLVE</p><h2 id="athlete-features-title">Plans change. Your history shouldn’t.</h2></div>
+      <div class="athlete-feature-grid">
+        <article><span>01</span><h3>Editable training</h3><p>Create phases and templates, change exercises and prescriptions, and reschedule sessions without rewriting completed work.</p></article>
+        <article><span>02</span><h3>Effective-dated nutrition</h3><p>Plan calorie and macro changes while historical compliance stays tied to the target that applied that day.</p></article>
+        <article><span>03</span><h3>Goals and analytics</h3><p>Define custom metrics, record milestones, and keep prescribed, completed, and historical data clearly separated.</p></article>
+        <article><span>04</span><h3>Safe Coach Updates</h3><p>Paste versioned JSON from ChatGPT, preview every proposed change, approve items individually, and undo an applied update.</p></article>
+      </div>
+    </section>
+
+    <section class="athlete-install-section" id="install" aria-labelledby="athlete-install-title">
+      <div class="athlete-section-heading"><p>INSTALL THE WEB APP</p><h2 id="athlete-install-title">Athlete OS lives on your home screen.</h2><p class="athlete-install-intro">This is a progressive web app (PWA), not a native App Store download. There is no IPA or APK file.</p></div>
+      <div class="athlete-install-grid">
+        <article class="athlete-install-card">
+          <div class="athlete-platform-icon"></div>
+          <h3>Install on iPhone</h3>
+          <ol>
+            <li>Open Athlete OS in <strong>Safari</strong>.</li>
+            <li>Tap <strong>Share</strong>.</li>
+            <li>Choose <strong>Add to Home Screen</strong>.</li>
+            <li>Turn on <strong>Open as Web App</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+          </ol>
+          <p>In short: Open in Safari &gt; Share &gt; Add to Home Screen &gt; Open as Web App &gt; Add.</p>
+          <a class="athlete-secondary-action athlete-full-action" href="https://athlete.jopdev.com/">Open in Safari</a>
+        </article>
+        <article class="athlete-install-card athlete-install-card-highlight">
+          <div class="athlete-platform-icon">A</div>
+          <h3>Install on Android</h3>
+          <ol>
+            <li>Open Athlete OS in a supported browser such as Chrome.</li>
+            <li>Tap <strong>Install app</strong> when offered.</li>
+            <li>If it is not shown, open the browser menu and choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li>
+          </ol>
+          <button class="athlete-primary-action athlete-full-action" type="button" data-install-athlete>Open install screen <span aria-hidden="true">↗</span></button>
+          <p class="athlete-action-help" data-install-help>The install prompt appears only in supported browsers after the app opens.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="athlete-local-section">
+      <div><p class="athlete-kicker"><span></span> Local-first data</p><h2>Your records belong to you.</h2></div>
+      <p>Athlete OS starts with no personal logs. Browser updates do not erase IndexedDB records under normal storage behavior. Complete JSON backup and validated restore are built in for portability and recovery.</p>
+    </section>
+  </main>
+</body>
+</html>

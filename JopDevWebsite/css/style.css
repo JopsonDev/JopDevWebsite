@@ -2388,6 +2388,294 @@ body {
 }
 
 
+/* Athlete OS showcase */
+.athlete-showcase-body {
+  background: #f7f6f1;
+  color: #17211c;
+}
+
+.athlete-showcase-body .site-header {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.athlete-showcase-page {
+  overflow: hidden;
+}
+
+.athlete-showcase-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+  gap: 64px;
+  align-items: center;
+  max-width: 1400px;
+  min-height: 760px;
+  margin: 0 auto;
+  padding: 88px 6%;
+}
+
+.athlete-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: #4d6554;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.athlete-kicker span {
+  width: 9px;
+  height: 9px;
+  background: #96d833;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px rgba(150, 216, 51, 0.14);
+}
+
+.athlete-showcase-copy h1 {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.athlete-lede {
+  max-width: 650px;
+  margin: 28px 0 0;
+  color: #5e6962;
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.athlete-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.athlete-primary-action,
+.athlete-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  border: 0;
+  border-radius: 12px;
+  padding: 0 20px;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.athlete-primary-action {
+  background: #17211c;
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(23, 33, 28, 0.16);
+}
+
+.athlete-primary-action:hover,
+.athlete-secondary-action:hover {
+  transform: translateY(-2px);
+}
+
+.athlete-secondary-action {
+  border: 1px solid #d5d9d3;
+  background: #fff;
+  color: #17211c;
+}
+
+.athlete-privacy-note {
+  max-width: 630px;
+  margin: 24px 0 0;
+  color: #657069;
+  font-size: 14px;
+}
+
+.athlete-privacy-note strong {
+  color: #31552d;
+}
+
+.athlete-preview {
+  display: grid;
+  grid-template-columns: 155px 1fr;
+  min-height: 500px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 33, 28, 0.12);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 32px 90px rgba(30, 49, 37, 0.16);
+  transform: perspective(1100px) rotateY(-4deg) rotateX(1deg);
+}
+
+.athlete-preview-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 27px 18px;
+  background: #101713;
+  color: #aeb8b1;
+}
+
+.athlete-preview-logo {
+  display: flex;
+  align-items: end;
+  gap: 4px;
+  margin-bottom: 28px;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.athlete-preview-logo i {
+  width: 5px;
+  height: 17px;
+  background: #b9f54d;
+  border-radius: 3px;
+  transform: skew(-8deg);
+}
+
+.athlete-preview-logo i:nth-child(2) { height: 25px; }
+.athlete-preview-logo i:nth-child(3) { height: 20px; margin-right: 6px; }
+.athlete-preview-sidebar > span { padding: 10px; border-radius: 9px; font-size: 12px; font-weight: 700; }
+.athlete-preview-sidebar > span.is-active { background: #28322b; color: #fff; box-shadow: inset 3px 0 #b9f54d; }
+
+.athlete-preview-main {
+  padding: 38px 34px;
+  background: #f7f6f1;
+}
+
+.athlete-preview-main > small,
+.athlete-preview-session small,
+.athlete-preview-stats small {
+  color: #707a73;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.athlete-preview-main h2 { margin: 4px 0 30px; font-size: 29px; letter-spacing: -0.03em; }
+.athlete-preview-session { min-height: 205px; display: flex; align-items: end; justify-content: space-between; gap: 20px; padding: 28px; border-radius: 20px; background: radial-gradient(circle at 90% 10%, #29452c 0 25%, transparent 26%), #142019; color: #fff; }
+.athlete-preview-session strong,
+.athlete-preview-session span { display: block; }
+.athlete-preview-session strong { margin: 8px 0; font-size: 25px; }
+.athlete-preview-session span { color: #aeb9b1; font-size: 13px; }
+.athlete-preview-session b { flex: 0 0 auto; padding: 10px 13px; border-radius: 9px; background: #b9f54d; color: #17211c; font-size: 11px; }
+.athlete-preview-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 13px; }
+.athlete-preview-stats > span { min-height: 105px; padding: 18px; border: 1px solid #e1e3de; border-radius: 15px; background: #fff; }
+.athlete-preview-stats strong { display: block; margin-top: 14px; font-size: 16px; }
+
+.athlete-feature-section,
+.athlete-install-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 112px 6%;
+}
+
+.athlete-feature-section {
+  border-top: 1px solid #dfe1db;
+}
+
+.athlete-section-heading > p:first-child {
+  margin: 0 0 10px;
+  color: #61715f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.athlete-section-heading h2 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.athlete-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.athlete-feature-grid article {
+  min-height: 250px;
+  padding: 34px;
+  border: 1px solid #dfe1db;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.athlete-feature-grid article > span { color: #799c4d; font-size: 12px; font-weight: 800; }
+.athlete-feature-grid h3 { margin: 42px 0 10px; font-size: 25px; }
+.athlete-feature-grid p { margin: 0; color: #657069; font-size: 16px; line-height: 1.65; }
+
+.athlete-install-section {
+  max-width: none;
+  background: #101713;
+  color: #f4f7f4;
+}
+
+.athlete-install-section > * { max-width: 1100px; margin-right: auto; margin-left: auto; }
+.athlete-install-section .athlete-section-heading > p:first-child { color: #b9f54d; }
+.athlete-install-intro { max-width: 720px; margin: 20px 0 0; color: #aab4ad; font-size: 18px; }
+.athlete-install-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 52px; }
+.athlete-install-card { padding: 38px; border: 1px solid #344039; border-radius: 21px; background: #19221d; }
+.athlete-install-card-highlight { border-color: #668a3f; background: #20311f; }
+.athlete-platform-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: #2f3933; font-size: 23px; font-weight: 800; }
+.athlete-install-card h3 { margin: 25px 0 18px; font-size: 26px; }
+.athlete-install-card ol { min-height: 210px; margin: 0; padding-left: 22px; color: #d0d7d2; line-height: 1.9; }
+.athlete-install-card > p { color: #9eaaa2; font-size: 13px; line-height: 1.55; }
+.athlete-full-action { width: 100%; margin-top: 18px; }
+.athlete-action-help { text-align: center; }
+
+.athlete-local-section {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 80px;
+  align-items: end;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 112px 6%;
+}
+
+.athlete-local-section h2 { margin: 12px 0 0; font-size: clamp(38px, 5vw, 58px); line-height: 1; letter-spacing: -0.04em; }
+.athlete-local-section > p { margin: 0; color: #5f6a63; font-size: 19px; line-height: 1.75; }
+
+@media only screen and (max-width: 900px) {
+  .athlete-showcase-hero { grid-template-columns: 1fr; min-height: auto; gap: 52px; padding-top: 64px; }
+  .athlete-showcase-copy h1 { max-width: 760px; }
+  .athlete-preview { transform: none; }
+}
+
+@media only screen and (max-width: 600px) {
+  .athlete-showcase-hero,
+  .athlete-feature-section,
+  .athlete-install-section,
+  .athlete-local-section { padding: 64px 20px; }
+  .athlete-showcase-copy h1 { font-size: 48px; }
+  .athlete-lede { font-size: 18px; }
+  .athlete-hero-actions { align-items: stretch; flex-direction: column; }
+  .athlete-preview { grid-template-columns: 1fr; min-height: 0; }
+  .athlete-preview-sidebar { display: none; }
+  .athlete-preview-main { padding: 26px 20px; }
+  .athlete-preview-session { align-items: flex-start; flex-direction: column; min-height: 220px; }
+  .athlete-preview-stats { grid-template-columns: 1fr; }
+  .athlete-feature-grid,
+  .athlete-install-grid,
+  .athlete-local-section { grid-template-columns: 1fr; }
+  .athlete-feature-grid article { min-height: 220px; padding: 27px; }
+  .athlete-install-card { padding: 28px 24px; }
+  .athlete-install-card ol { min-height: 0; }
+  .athlete-local-section { gap: 30px; }
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

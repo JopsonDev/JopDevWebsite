@@ -21,6 +21,11 @@ module.exports = merge(common, {
     }),
 
     new HtmlWebpackPlugin({
+      template: './athlete-os/index.html',
+      filename: 'athlete-os/index.html',
+    }),
+
+    new HtmlWebpackPlugin({
       template: './rakingpix/index.html',
       filename: 'rakingpix/index.html'
     }),
